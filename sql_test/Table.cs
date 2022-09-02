@@ -24,9 +24,9 @@ namespace sql_test
             _columns.Add(in_);
         }
 
-        public string prt()
+        public void print()
         {
-            return "Table: " + _name + ", with object id: " + _objId.ToString() + ", with " + _columns.Count().ToString() + " columns. ";
+            Console.WriteLine("Table: " + _name + ", with object id: " + _objId.ToString() + ", with " + _columns.Count().ToString() + " columns. ");
         }
 
         public int getObjId()
@@ -38,7 +38,12 @@ namespace sql_test
             return _name;
         }
 
-        public void getColumns(SqlConnection conn)
+        public List<Column> getColumns()
+        {
+            return _columns;
+        }
+
+        public void fetchColumns(SqlConnection conn)
         {
             try
             {

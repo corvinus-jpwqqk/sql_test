@@ -44,21 +44,21 @@ namespace sql_test
                 {
                     while (rdr.Read())
                     {
-                        string tableName = (string)rdr[0];
-                        int objectId = (int)rdr[1];
-                        Table t = new Table(objectId, tableName);
+                        Table t = new Table(Convert.ToInt32(rdr[1]), rdr[0].ToString());
                         tables.Add(t);
                     }
                 }
                 conn.Close();
                 foreach (var t in tables)
                 {
-                    t.getColumns(conn);
-                    Console.WriteLine(t.prt());
+                    t.fetchColumns(conn);
+                    t.print();
                 }
             }
+            Exercise e1 = new Exercise(tables);
+            e1.print();
             Console.ReadKey();
-
+            return;
         }
     }
 }
